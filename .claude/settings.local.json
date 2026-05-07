@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Get-Content postman_collection/API_for_yatube.postman_collection.json | Select-String -Pattern '\\\\\"url\\\\\"' | Select-Object -First 20\")",
+      "Bash(powershell -Command \"Get-Content postman_collection/API_for_yatube.postman_collection.json | Select-String -Pattern 'api/v1' | Select-Object -First 30\")",
+      "Bash(Get-ChildItem -Recurse -Filter \"*.py\")",
+      "Bash(Select-Object FullName)",
+      "Bash(python manage.py makemigrations)",
+      "Bash(pip install *)",
+      "Bash(python manage.py migrate)",
+      "Bash(python -m pytest tests/test_follow.py -v)",
+      "Bash(python -m pytest tests/test_follow.py::TestFollowAPI::test_follow_get -v)",
+      "Bash(python -m pytest tests/test_follow.py::TestFollowAPI::test_follow_search_filter -v)",
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(python -m pytest tests/test_comment.py::TestCommentAPI::test_comments_get -v)",
+      "Bash(python -m pytest tests/test_group.py::TestGroupAPI::test_group_auth_get -v)",
+      "Bash(python -m pytest tests/test_comment.py::TestCommentAPI::test_comment_author_and_post_are_read_only -v)",
+      "Bash(python -m pytest tests/test_comment.py::TestCommentAPI::test_comment_change_by_auth_with_valid_data -v)",
+      "Bash(python -m pytest tests/ -v --tb=short)",
+      "Bash(python -m pytest tests/ -q)",
+      "Bash(python -m flake8 . --max-line-length=79 --exclude=migrations,__pycache__)",
+      "Bash(python -m flake8 . --max-line-length=79 --exclude=migrations,__pycache__ --select=E,W --ignore=W292)"
+    ]
+  }
+}
