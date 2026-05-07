@@ -19,7 +19,9 @@
       "Bash(python -m pytest tests/ -v --tb=short)",
       "Bash(python -m pytest tests/ -q)",
       "Bash(python -m flake8 . --max-line-length=79 --exclude=migrations,__pycache__)",
-      "Bash(python -m flake8 . --max-line-length=79 --exclude=migrations,__pycache__ --select=E,W --ignore=W292)"
+      "Bash(python -m flake8 . --max-line-length=79 --exclude=migrations,__pycache__ --select=E,W --ignore=W292)",
+      "Bash(python -m pytest tests/test_post.py::TestPostAPI::test_posts_get_paginated -v)",
+      "Bash(python -m pytest tests/test_post.py -q)"
     ]
   }
 }

@@ -5,7 +5,9 @@ from posts.models import Post, Comment, Group, Follow
 from .serializers import (
     PostSerializer, CommentSerializer, GroupSerializer, FollowSerializer
 )
-from .permissions import IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly
+from .permissions import (
+    IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly, OptionalPagination
+)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -14,7 +16,7 @@ class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ['text']
-    pagination_class = None
+    pagination_class = OptionalPagination
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

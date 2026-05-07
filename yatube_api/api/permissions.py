@@ -1,4 +1,6 @@
 from rest_framework import permissions
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.response import Response
 
 
 class IsAuthenticatedOrReadOnly(permissions.BasePermission):
@@ -18,3 +20,13 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 class IsAuthenticated(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated
+
+
+class OptionalPagination(LimitOffsetPagination):
+    def paginate_queryset(self, queryset, request, view=None):
+        if 'limit' in request.query_params or 'offset' in request.query_params:
+            return super().paginate_queryset(queryset, request, view)
+        return None
+
+    def get_paginated_response(self, data):
+        return Response(data)
